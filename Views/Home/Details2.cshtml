@@ -1,0 +1,109 @@
+﻿@model LapTopStore.Models.Laptop
+
+@{
+    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+
+    <div class="section padding_layout_1 product_detail">
+        <div class="container">
+             <h4>Chi tiết sản phẩm</h4>
+            <div class="row">
+               
+                <div class="col-md-9">
+
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12 col-md-12">
+                            <div class="product_detail_feature_img hizoom hi2">
+                                <div class='hizoom hi2'> <img src="~/images/@Model.ProfilePicture" height="300" width="100%" /> </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
+                            <div class="product-heading">
+
+                                <h2>@Model.TenSP</h2>
+                            </div>
+                            <div class="product-detail-side"> <span><del> 15%</del></span><span class="new-price text-danger">@String.Format(format, "{0:c0}", Model.GiaTien)</span><span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span>  </div>
+                            <div class="detail-contant">
+
+                                <form class="cart" id="@Model.LaptopID" asp-page="/MyCart" method="post">
+                                    <div class="quantity">
+                                        <input step="1" min="1" max="5" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" type="number">
+                                    </div>
+                                    <input type="hidden" asp-for="LaptopID" />
+                                    <input type="hidden" name="returnUrl"
+                                           value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                    <button type="submit" class="btn sqaure_bt" onclick="tbgiohang()">Thêm vào Giỏ Hàng</button>
+                                </form>
+
+                            </div>
+                            <div class="share-post">
+                                <a href="#" class="share-text">Chia sẻ</a>
+                                <ul class="social_icons">
+                                    <li><a href="#"><i class="bi bi-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="bi bi-twitter" aria-hidden="true"></i></a></li>
+                                 
+                                    <li><a href="#"><i class="bi bi-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="bi bi-linkedin" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="full">
+                                <div class="tab_bar_section">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#description">Cấu hình</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#reviews">Đánh giá</a> </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div id="description" class="tab-pane active">
+                                            <div class="product_desc">
+                                                <p>
+                                                    @Model.CauHinh
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div id="reviews" class="tab-pane fade">
+                                            <div class="product_review">
+                                                <h3>Đánh giá (2)</h3>
+                                                <div class="commant-text row">
+                                                    <div class="col-lg-2 col-md-2 col-sm-4">
+                                                        <div class="profile"> <img class="img-responsive" src="https://i.pinimg.com/736x/de/a0/f3/dea0f3b7f480b1151c08db4a402a43b9.jpg" alt="#"> </div>
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-10 col-sm-8">
+                                                        <h5>Thành Đạt</h5>
+                                                        <p><span class="c_date">16/05/2022</span> | <span><a rel="nofollow" class="comment-reply-link" href="#">Trả lời</a></span></p>
+
+                                                        <p class="msg">
+                                                            Laptop cấu hình tốt, giá rẻ so với thị trường.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="commant-text row">
+                                                    <div class="col-lg-2 col-md-2 col-sm-4">
+                                                        <div class="profile"> <img class="img-responsive" src="https://iweb.tatthanh.com.vn/pic/3/blog/images/image(2068).png" alt="#"> </div>
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-10 col-sm-8">
+                                                        <h5>Trung Nam</h5>
+                                                        <p><span class="c_date">14/05/2022</span> | <span><a rel="nofollow" class="comment-reply-link" href="#">Trả lời</a></span></p>
+
+                                                        <p class="msg">Chơi mượt tất cả các tựa game espost</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+

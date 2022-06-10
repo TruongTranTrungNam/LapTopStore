@@ -1,0 +1,12 @@
+﻿@model IEnumerable<string>
+    <h4>Lọc theo</h4>
+@foreach (string genre in Model)
+{
+    <a style="color:blue;text-transform:none" class=" btn
+ @(genre == ViewBag.SelectedGenre)"
+       asp-action="Index" asp-controller="Home"
+       asp-route-genre="@genre"
+       asp-route-laptopPage="1">
+        @genre
+    </a>
+}

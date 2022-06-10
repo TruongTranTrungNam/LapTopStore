@@ -1,0 +1,147 @@
+﻿@model LapTopStore.Models.Laptop
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+@*@foreach (var laptop in Model.Laptops)
+    {
+        <div class="col-md-12">
+            <img src="~/images/@laptop.ProfilePicture" asp-append-version="true" width="100%" height="300" />
+        </div>
+        <div class="col-md-12">
+            <div style="color:black" class="card-body alert-secondary">
+                <p class="card-text"><b>Tên Sản phẩm </b>@laptop.TenSP</p>
+                <p class="card-text"><b>Cấu Hình </b>@laptop.CauHinh</p>
+                <p class="card-text"><b>Loại Máy </b>@laptop.LoaiMay</p>
+                <p class="card-text"><b>Giá Tiền </b>@laptop.GiaTien.ToString("c")</p>
+                <p>
+                    <a asp-action="Delete" asp-route-id="@laptop.LaptopID">Details</a>
+                </p>
+                <p>
+
+                    <partial name="LaptopTemplate" model="laptop" />
+                </p>
+            </div>
+        </div>
+    }*@
+@section breadcrum{
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0"><a  style="text-decoration: none;color:orange">@Model.LoaiMay</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">@Model.TenSP</strong></div>
+            </div>
+        </div>
+    </div>
+}
+    <div class="site-section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="text-black">@Model.TenSP</h2>
+                    <img src="~/images/@Model.ProfilePicture" width="100%" height="350" />
+                </div>
+
+                <div class="col-sm-6">
+
+                    @*<p>Cấu Hình: <b>@Model.CauHinh</b></p>
+        <p class="mb-4">Loại Máy: <b>@Model.LoaiMay</b></p>*@
+                    <p>
+                        <strong class="text-danger h4">
+                            @Model.GiaTien.ToString("c")
+                        </strong>
+                    </p>
+                    <p><b>Cấu Hình:</b> @Model.CauHinh</p>
+                    <p class="mb-4"><b>Loại Máy:</b> @Model.LoaiMay</p>
+                    <form id="@Model.LaptopID" asp-page="/MyCart" method="post">
+                        <input type="hidden" asp-for="LaptopID" />
+                        <input type="hidden" name="returnUrl"
+                               value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                        @*<div class="card-text p-1">
+        <strong>@Model.GiaTien</strong>
+        <p>@Model.CauHinh</p>*@
+                        <button type="submit"
+                                class="bi bi-cart-fill btn btn-outline-success " onclick="tbgiohang()">Thêm vào Giỏ hàng
+                        </button>
+
+                        @*</div>*@
+                    </form>
+                </div>
+
+
+                @*<dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TenSP)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.TenSP)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CauHinh)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CauHinh)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.LoaiMay)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.LoaiMay)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GiaTien)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GiaTien)
+                    </dd>
+                    <dd class="col-sm-10">
+                        <img src="~/images/@Model.ProfilePicture" />
+                    </dd>*@
+                @*@foreach (var laptop in Model.Laptops)
+                    {
+                        <div class="col-md-12">
+                            <img src="~/images/@laptop.ProfilePicture" asp-append-version="true" width="100%" height="300" />
+                        </div>
+                    }*@
+
+            </div>
+        </div>
+    </div>
+
+    @*<div class="site-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="@Model.ProfilePicture" alt="@Model.ThuCung" class="img-fluid">
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="text-black">@Model.ThuCung</h2>
+                        <p>Giống Loài: <b>@Model.GiongLoai</b></p>
+                        <p class="mb-4">Giới Tính: <b>@Model.GioiTinh</b></p>
+                        <p>
+                            <strong class="text-primary h4">
+                                @String.Format(format, "{0:c0}", Model.Gia)
+                            </strong>
+                        </p>
+                        <form id="@Model.Id" asp-page="/MyCart" method="post">
+                            <div class="mb-5">
+                                <div class="input-group mb-3" style="max-width: 120px;">
+                                    <input type="hidden" asp-for="Id" />
+                                    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                    <button type="submit" class="btn btn-success float-right store-btn">
+                                        <i class="fas fa-shopping-cart"></i> Mua
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    @*<div >
+           <a asp-action="Edit" asp-route-id="@Model.LaptopID">Edit</a>
+            <a class="btn btn-sm" style="text-decoration: none;color:orange" asp-action="Index">Quay lại</a>
+        </div>*@
+

@@ -1,0 +1,39 @@
+﻿@*@model Laptop
+    <div class="card" style="width: 100%;">
+        <div class="card-body">
+            <h5 class="card-title">
+                @Model.TenSP
+                <span class="badge badge-pill badge-primary">
+                    <small>@Model.GiaTien.ToString("c")</small>
+                </span>
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">@Model.LoaiMay</h6>
+            <p class="card-text">@Model.CauHinh</p>
+        </div>
+    </div>*@
+
+@model Laptop
+@*<div class="card" style="width: 100%;">*@
+    <div class="text-center" style="display:inline-block">
+        @*<h5 class="card-title">
+            @Model.TenSP
+            <span class="badge badge-pill badge-primary">
+                <small>@Model.GiaTien.ToString("c")</small>
+            </span>
+        </h5>*@
+        <form id="@Model.LaptopID" asp-page="/MyCart" method="post">
+            <input type="hidden" asp-for="LaptopID" />
+            <input type="hidden" name="returnUrl"
+                   value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            @*<div class="card-text p-1">
+        <strong>@Model.GiaTien</strong>
+        <p>@Model.CauHinh</p>*@
+        <button type="submit"
+                class="fa fa-shopping-cart btn btn-danger " onclick="tbgiohang()">
+            
+        </button>
+            
+            @*</div>*@
+        </form>
+    </div>
+@*</div>*@

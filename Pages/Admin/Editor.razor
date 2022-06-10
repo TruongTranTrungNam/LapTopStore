@@ -1,0 +1,89 @@
+﻿@page "/admin/laptops/edit/{id:long}"
+@page "/admin/laptops/create"
+@inherits OwningComponentBase<ILapTopStoreRepository>
+
+
+@{
+    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+
+<style>
+    div.validation-message {
+        color: rgb(220, 53, 69);
+        font-weight: 500
+    }
+</style>
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Laptop</h3>
+<EditForm Model="Laptop" OnValidSubmit="SaveLaptop">
+    <DataAnnotationsValidator />
+    @if (Laptop.LaptopID != 0)
+    {
+        <div class="form-group">
+            <label>ID</label>
+            <input class="form-control" disabled value="@Laptop.LaptopID" />
+        </div>
+    }
+    <div class="form-group">
+        <label>Tên SP</label>
+        <ValidationMessage For="@(() => Laptop.TenSP)" />
+        <InputText class="form-control" @bind-Value="Laptop.TenSP" />
+    </div><div class="form-group">
+        <label>Cấu hình</label>
+        <ValidationMessage For="@(() => Laptop.CauHinh)" />
+        <InputText class="form-control" @bind-Value="Laptop.CauHinh" />
+    </div>
+    <div class="form-group">
+        <label>Loại máy</label>
+        <ValidationMessage For="@(() => Laptop.LoaiMay)" />
+        <InputText class="form-control" @bind-Value="Laptop.LoaiMay" />
+    </div>
+    <div class="form-group">
+        <label>Giá tiền</label>
+        <ValidationMessage For="@(() => Laptop.GiaTien)" />
+        <InputNumber class="form-control" @bind-Value="Laptop.GiaTien" />
+    </div>
+
+    <div class="form-group">
+        <label>Hình ảnh</label>
+        <ValidationMessage For="@(() => Laptop.ProfilePicture)" />
+        <InputText class="form-control" @bind-Value="Laptop.ProfilePicture" />
+       
+
+        @*<div class="custom-file">
+            <input asp-for="ImageLaptop" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile"><i class="bi bi-card-image"></i> Chọn Hình ảnh</label>
+        </div>
+        <span asp-validation-for="ImageLaptop" class="text-danger"></span>*@
+    </div>
+
+    <button type="submit" class="btn btn-@ThemeColor">Lưu</button>
+    <NavLink class="btn btn-secondary"
+             href="/admin/laptops">Hủy</NavLink>
+</EditForm>
+@code {
+    public ILapTopStoreRepository Repository => Service;
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+    [Parameter]
+    public long Id { get; set; } = 0; public Laptop Laptop { get; set; } = new Laptop();
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Laptop = Repository.Laptops.FirstOrDefault(l => l.LaptopID == Id);
+        }
+    }
+    public void SaveLaptop()
+    {
+        if (Id == 0)
+        {
+            Repository.CreateLaptop(Laptop);
+        }
+        else
+        {
+            Repository.SaveLaptop(Laptop);
+        }
+        NavManager.NavigateTo("/admin/laptops");
+    }
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+}

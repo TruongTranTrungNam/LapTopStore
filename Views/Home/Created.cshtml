@@ -1,0 +1,80 @@
+﻿@model LapTopStore.Models.ViewModels.LaptopsViewModels
+
+@{
+    ViewData["Title"] = "Created";
+}
+
+<div class="col-md-10 mx-auto py-4">
+    <div class="card">
+        <div class="card-header bg-warning  text-white">
+            <h4 class="bi bi-plus-circle">  Thêm Sản phẩm </h4>
+            
+        </div>
+        <div class="card-body alert-secondary">
+            <form enctype="multipart/form-data" asp-action="Created">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="TenSP" class="control-label"></label>
+                            <input asp-for="TenSP" class="form-control" />
+                            <span asp-validation-for="TenSP" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="CauHinh" class="control-label"></label>
+                            <input asp-for="CauHinh" class="form-control" />
+                            <span asp-validation-for="CauHinh" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LoaiMay" class="control-label"></label>
+                            <input asp-for="LoaiMay" class="form-control" />
+                            <span asp-validation-for="LoaiMay" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="GiaTien" class="control-label"></label>
+                            <input asp-for="GiaTien" class="form-control" />
+                            <span asp-validation-for="GiaTien" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ImageLaptop" class="control-label"></label>
+                            <div class="custom-file">
+                                <input asp-for="ImageLaptop" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile"><i class="bi bi-card-image"></i> Chọn Hình ảnh</label>
+                            </div>
+                            <span asp-validation-for="ImageLaptop" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    
+                     <input type="submit" value="Xác nhận" class="btn  btn-success   text-dark" />
+                    <a asp-action="Index" class="btn  btn-secondary   text-warning"><i class="bi bi-skip-backward"></i></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+} 

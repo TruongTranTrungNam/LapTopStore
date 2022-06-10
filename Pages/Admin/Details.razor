@@ -1,0 +1,31 @@
+﻿@page "/admin/laptops/details/{id:long}"
+@{
+    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+
+<h3 class="bg-info text-white text-center p-1">Chi tiết</h3>
+<table class="table table-sm table-bordered table-striped">
+    <tbody>
+        <tr><th>STT</th><td>@Laptop.LaptopID</td></tr>
+        <tr><th>Hình ảnh</th><td>
+            <img src="/images/@Laptop.ProfilePicture" asp-append-version="true" height="100" width="100" />
+            </td>
+        </tr>
+        <tr><th>Tên SP</th><td>@Laptop.TenSP</td></tr>
+        <tr><th>Cấu hình</th><td>@Laptop.CauHinh</td></tr>
+        <tr><th>Loại máy</th><td>@Laptop.LoaiMay</td></tr>
+        <tr><th>Giá tiền</th><td>@String.Format(format, "{0:c0}", Laptop.GiaTien)</td></tr>
+    </tbody>
+</table>
+<NavLink class="btn btn-warning" href="@EditUrl">Sửa</NavLink>
+<NavLink class="btn btn-secondary" href="/admin/laptops">Quay lại</NavLink>
+@code {[Inject]
+    public ILapTopStoreRepository Repository { get; set; }
+    [Parameter]
+    public long Id { get; set; }
+    public Laptop Laptop { get; set; }
+    protected override void OnParametersSet()
+    {
+        Laptop = Repository.Laptops.FirstOrDefault(l => l.LaptopID == Id);
+    }
+    public string EditUrl => $"/admin/laptops/edit/{Laptop.LaptopID}";
+}

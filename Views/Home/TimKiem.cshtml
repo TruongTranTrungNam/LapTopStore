@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LapTopStore.Models.Laptop>
+@{
+    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+<link rel="icon" href="~/images/fevicon/fevicon.png" type="image/gif" />
+<!-- bootstrap css -->
+<link rel="stylesheet" href="~/css/bootstrap.min.css" />
+<!-- Site css -->
+<link rel="stylesheet" href="~/css/style.css" />
+<!-- responsive css -->
+<link rel="stylesheet" href="~/css/responsive.css" />
+<!-- colors css -->
+<link rel="stylesheet" href="~/css/colors1.css" />
+<!-- custom css -->
+<link rel="stylesheet" href="~/css/custom.css" />
+<!-- wow Animation css -->
+<link rel="stylesheet" href="~/css/animate.css" />
+
+
+<div class="row">
+    @foreach (var laptop in Model)
+    {
+    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
+        <div class="product_list">
+            <a class="a-cleanup" asp-controller="Home" asp-action="Details2" asp-route-id="@laptop.LaptopID">
+                <div class="product_img"> <img class="img-responsive" src="~/images/@laptop.ProfilePicture" alt=""> </div>
+            </a>
+            <div class="product_detail_btm">
+                <div class="center">
+                    <h4><a href="it_shop_detail.html"> @laptop.TenSP</a></h4>
+                </div>
+                <div class="starratin">
+                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
+                </div>
+                <div class="product_price">
+                    <p><span class="old_price">-15%</span> – <span class="new_price text-danger">@String.Format(format, "{0:c0}", laptop.GiaTien)</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

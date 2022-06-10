@@ -1,0 +1,68 @@
+﻿@model LapTopStore.Models.ViewModels.LaptopsListViewModel
+
+
+
+
+
+    <div class="row">
+        @foreach (var laptop in Model.Laptops)
+        {
+
+
+            <div class="col-md-4 col-xs-6 border-primary mb-3">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-12">
+                            <div style="color:black" class="card-header text-black bg-warning">
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @laptop.TenSP
+                                    </h5>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <img src="~/images/@laptop.ProfilePicture" asp-append-version="true" width="100%" height="300" />
+                        </div>
+                        <div class="col-md-12">
+                            <div style="color:black" class="card-body alert-secondary">
+                                <p class="card-text"><b>Tên Sản phẩm </b>@laptop.TenSP</p>
+                                @*<p class="card-text"><b>Cấu Hình </b>@laptop.CauHinh</p>*@
+                                <p class="card-text"><b>Loại Máy </b>@laptop.LoaiMay</p>
+                                <p class="card-text"><b>Giá Tiền </b>@laptop.GiaTien.ToString("c")</p>
+                                
+                                <div style="display:inline">
+                                   
+
+                                    <partial name="LaptopTemplate" model="laptop"/>
+                                    
+                                    <a class="fa-solid fa-eye btn btn-primary text-center" asp-action="Details2" asp-route-id="@laptop.LaptopID"></a>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+
+
+                        @*<div class="col-md-12">
+                                <div class="card-footer ">
+                                    <p class="card-text">
+                                        <a class="btn btn-secondary float-right" asp-action="UserDetails" asp-route-id="@item.Id">
+                                            <i class="bi bi-eye-fill"></i> Xem thông tin
+                                        </a>
+
+                                    </p>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+         page-class="btn rounded-circle" page-class-normal="btn-outline-dark"
+         page-class-selected="btn-success" page-url-genre="@Model.CurrentGenre"
+         class="btn-group pull-right m-1 pl-4">
+    </div>
+
+
