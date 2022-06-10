@@ -1,11 +1,11 @@
-# LapTopStore
+# LapTopStore là 1 Project nhỏ về Của hàng Laptop
 
-#Các công nghệ sử dụng trong project:
-1.Asp.net core MVC
-2.EF Core
-3.Bootstrap
-4.LinQ
-5.Blazor
+# Các công nghệ sử dụng trong project:
+1. Asp.net core MVC
+2. EF Core
+3. Bootstrap
+4. LinQ
+5. Blazor
 
 # Giao diện trang web
 
@@ -30,10 +30,14 @@
 
 ![image](https://user-images.githubusercontent.com/72543365/173017319-113af5ba-25a2-4472-8fcc-92afade58465.png)
 
-# Giao diện ADMIN và các tính năng (Thêm, Xóa, Sửa)sản phẩm
+# Giao diện ADMIN
+
+-Các tính năng (Thêm, Xóa, Sửa, Chi tiết) sản phẩm
 
 ![image](https://user-images.githubusercontent.com/72543365/173017716-26818813-b998-44d8-8c87-3c2edb758cd4.png)
 
+-Quản lý Đơn hàng Đã giao hoặc Chưa giao
 
+![image](https://user-images.githubusercontent.com/72543365/173021007-706804cd-33fd-4bc6-9652-a81c8ced39fd.png)
 
 
